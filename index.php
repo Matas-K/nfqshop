@@ -93,15 +93,16 @@ switch ($action) {
 			'current' => $page,
 		];
 		
-		$statement = $db->query('SELECT * FROM `shop_orders` LIMIT :limit, :perpage');
+		$statement = $db->prepare("SELECT * FROM `shop_orders` LIMIT :limit, :perpage");
 		$statement->execute([
-			'limit' => $page*$per_page,
-			'perpage' => $per_page,
+			':limit' => $page*$per_page,
+			':perpage' => $per_page,
 		]); 
 		while($row = $statement->fetch()) {
 			$order = new \models\OrderModel($row);
 			$content['list'][] = $order->getData();
 		}
+		$statement->closeCursor();
 		
 		$view = new \views\htmlView();
 		$view->setContent($content);
