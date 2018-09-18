@@ -14,13 +14,14 @@ if(!defined('ROOT_PATH')){
 <?php 
 
 if($content['list']){
-	foreach($content['list'] as $item)
-	?><div class="body row">
-		<div class="col"><?= $item['id']; ?></div>
-		<div class="col"><?= $item['name']; ?></div>
-		<div class="col"><?= $item['lastname']; ?></div>
-		<div class="col"><?= $item['email']; ?></div>
-	</div><?php
+	foreach($content['list'] as $item){
+		?><div class="body row">
+			<div class="col"><?= $item['id']; ?></div>
+			<div class="col"><?= $item['name']; ?></div>
+			<div class="col"><?= $item['lastname']; ?></div>
+			<div class="col"><?= $item['email']; ?></div>
+		</div><?php
+	}
 }
 else {
 	?><div>No order items</div><?php

@@ -2,7 +2,7 @@
 
 return [
 	'debug' => true,
-	'root_url' => 'nfqshop2/',
+	'root_url' => 'nfqshop/',
 	
 	'db' => [
 		'lib' => 'pdo',

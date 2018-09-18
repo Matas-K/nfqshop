@@ -12,7 +12,7 @@ date_default_timezone_set('Europe/Vilnius');
 
 $config = require __DIR__.'/config.php';
 
-define('BASE_URL', '/nfqshop2/');
+define('BASE_URL', '/'.$config['root_url']);
 define('ROOT_PATH', __DIR__.'/');
 define('DEBUG_MODE', !empty($config['debug']));
 ini_set('display_errors', DEBUG_MODE ? 1 : 0);
@@ -78,7 +78,7 @@ switch ($action) {
 		//$page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
 		
 		$db = new \core\DataBase($config['db']);
-		$statement = $db->query('SELECT * FROM `shop_orders` LIMIT ');
+		$statement = $db->query('SELECT * FROM `shop_orders`');
 		while($row = $statement->fetch()) {
 			$order = new \models\OrderModel($row);
 			$content['list'][] = $order->getData();

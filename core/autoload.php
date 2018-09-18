@@ -14,5 +14,5 @@ spl_autoload_register(function($class){
 	echo "\t".$class . '.php'."\n";
 	echo "\t".'T: '.gentime().'; M: '.round(memory_get_peak_usage(false)/1024/1024, 4).' <em>'.$class.'</em>'."\n\n";
 	 */
-	include $class . '.php';
+	include strtolower($class). '.php';
 });
