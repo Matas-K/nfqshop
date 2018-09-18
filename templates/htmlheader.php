@@ -47,6 +47,18 @@ if(!defined('ROOT_PATH')){
 		.success-text{
 			color: green;
 		}
+		
+		.pager{
+			padding:20px 0;
+		}
+		.pager a, 
+		.pager span{
+			padding: 5px;
+			margin: 5px;
+		}
+		.pager .current{
+			font-weight: bold
+		}
 	</style>
 </head>
 <body>

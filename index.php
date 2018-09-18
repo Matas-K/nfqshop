@@ -74,12 +74,30 @@ switch ($action) {
 	case 'orderlist':
 		$content = [
 			'list' => [],
+			'page' => [],
+			'index_url' => BASE_URL,
+			'pager_url' => BASE_URL.'?action=orderlist&page=%d',
 		];
 		
-		//$page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
-		
 		$db = new \core\DataBase($config['db']);
-		$statement = $db->query('SELECT * FROM `shop_orders`');
+		
+		$per_page = isset($config['orders_per_page']) ? (int)$config['orders_per_page'] : 10;
+		$page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
+		
+		$result = $db->prepare("SELECT COUNT(`id`) FROM `shop_orders`"); 
+		$result->execute(); 
+		$total_items = $result->fetchColumn();
+		
+		$content['page'] = [
+			'total' => ceil($total_items/$per_page),
+			'current' => $page,
+		];
+		
+		$statement = $db->query('SELECT * FROM `shop_orders` LIMIT :limit, :perpage');
+		$statement->execute([
+			'limit' => $page*$per_page,
+			'perpage' => $per_page,
+		]); 
 		while($row = $statement->fetch()) {
 			$order = new \models\OrderModel($row);
 			$content['list'][] = $order->getData();
