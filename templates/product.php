@@ -23,4 +23,7 @@ if(isset($content['insert_success'])){
 <h3>Order product</h3>
 <?php $this->includeFile('orderform'); ?>
 </div>
+
+<div><br></div>
+<div><a href="<?php echo $content['order_list']; ?>">Order list</a></div>
 	

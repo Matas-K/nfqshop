@@ -43,7 +43,7 @@ class htmlView extends abstractView {
 		echo $this->render();
 	}
 	
-	public function includeFile(string $file, array $params = array()){
+	public function includeFile($file, array $params = array()){
 		$content = $this->content;
 		if(!empty($params)){
 			extract($params);

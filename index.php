@@ -30,6 +30,7 @@ switch ($action) {
 			'order' => array_fill_keys($order->getDataKeysWitoutPrimaryColumns(), ''),
 			'errors' => [],
 			'order_submit_url' => BASE_URL.'?action=orderadd',
+			'order_list' => BASE_URL.'?action=orderlist',
 		];
 		
 		if(isset($_SESSION['success'])){
